@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 describe UberTask do
   it 'Retries the child task after two exceptions' do
     task_retried_after_exception = 0
