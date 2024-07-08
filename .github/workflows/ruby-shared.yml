@@ -1,0 +1,27 @@
+name: Ruby shared
+
+on:
+  workflow_call:
+    inputs:
+      os-version:
+        type: string
+        required: false
+        default: "ubuntu-latest"
+      ruby-version:
+        type: string
+        required: false
+        default: "3.2"
+
+jobs:
+  set-up-ruby:
+    runs-on: ${{ inputs.os-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ inputs.ruby-version }}
+          bundler-cache: true
+      - name: Install dependencies
+        run: bundle install
